@@ -1,12 +1,19 @@
 /*-------------------------------------------------------------------------------------
-Author:           Xianhua Zeng
-Creation Date:    29Nov2016
-Program Purpose:  To create program inventory for ADRG
-Macro Parameters: p_path - parent directory's path where programs are located
-                  m_path - path where macros are located
-                  kword  - library name of analysis datasets or SDTM domain
-                  o_path - path where program inventory is located
-Output:           Program inventory.xls
+ SAS Version:      9.2 and above
+ Operating System: UNIX
+---------------------------------------------------------------------------------------
+
+ Author:           Xianhua Zeng
+ Creation Date:    29Nov2016
+
+ Program Purpose:  To create program inventory for ADRG
+
+ Macro Parameters: p_path - parent directory's path where programs are located
+                   m_path - path where macros are located
+                   kword  - library name of analysis datasets or SDTM domain
+                   o_path - path where program inventory is located
+
+ Output:           Program inventory.xls
 -------------------------------------------------------------------------------------*/
 
 %macro extdsnman(p_path =, 
