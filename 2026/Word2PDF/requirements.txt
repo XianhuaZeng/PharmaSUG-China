@@ -1,0 +1,9 @@
+# Word2PDF — Python dependencies
+# Install with: pip install -r requirements.txt
+#
+# Note: pywin32 (win32com) must be installed via pip on Windows.
+# Microsoft Word must be separately installed on the target machine.
+pywin32>=306
+PyPDF2>=3.0.0
+xlrd>=2.0.1
+xlsxwriter>=3.0.0
