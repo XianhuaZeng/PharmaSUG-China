@@ -46,6 +46,8 @@ Double-click `DupChecker.py`, or run:
 python DupChecker.py
 ```
 
+![GUI screenshot](docs/screenshot.png)
+
 ### Steps
 
 1. **Main Path** — click **Browse…** to select the folder containing the main SAS programs
@@ -107,7 +109,9 @@ DupChecker/
 ├── DupChecker.ico       # Application icon
 ├── requirements.txt
 ├── README.md
-└── LICENSE
+├── LICENSE
+└── docs/
+    └── screenshot.png
 ```
 
 ---
