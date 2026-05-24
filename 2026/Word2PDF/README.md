@@ -116,9 +116,13 @@ When merging, Word2PDF looks for a `Bookmark.xls` file in the **same folder as t
 
 | Column A | Column B |
 |---|---|
-| File stem (no extension) | Bookmark label / TOC entry shown in the combined output |
-| `table1_efficacy` | `Table 1 – Efficacy Summary` |
-| `figure2_kaplan` | `Figure 2 – Kaplan-Meier Plot` |
+| Output Identifier | Title |
+| `f_4_3_3_1_1` | `Figure 4.3:3.1.1 Systolic Blood Pressure by Visit - Treatment A (Treated Set)` |
+| `f_4_3_4` | `Figure 4.3.4 Box plots for Pulse Rates (Treated Set)` |
+| `l_7_001` | `Listing 7.001 Adverse Events - Overall Population` |
+| `t_1_1_1` | `Table 1.1:1 Disposition of Patients (Randomized Set)` |
+| `t_14_01_01_02` | `Table 14.1.1.2 Subject Disposition - Part 1 (Drug Interaction)` |
+| `t_14_1_2_2` | `Table 14.1.2.2 Baseline Characteristics` |
 
 > Note: `Bookmark.xls` uses the legacy `.xls` format (read via `xlrd`).
 
