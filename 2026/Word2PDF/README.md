@@ -15,6 +15,7 @@ A Windows desktop GUI tool to **convert** Word/RTF documents to PDF, **combine**
 - Navigation heading injection (`add_nav_to_rtf`) — inserts a hidden Word Nav Pane heading for files that lack one, so all entries appear consistently in the navigation panel
 - Chinese content auto-detection (`_is_chinese_rtf`) — switches TOC heading and cover bookmark label to Chinese automatically
 - Bookmark ordering via `Bookmark.xls` or automatic natural sort (Table → Figure → Listing)
+- **Bookmark list auto-generation** via `BookmarkGen.py` — scans a folder of RTF files, extracts TFL titles (supports English, Chinese Unicode `\uN;`, and Chinese GBK `\'XX` encodings), and writes a ready-to-use `Bookmark.xls`
 - PDF/A (ISO 19005-1) output support
 - Preserves original file modification timestamps after conversion
 
@@ -124,9 +125,41 @@ When merging, Word2PDF looks for a `Bookmark.xls` file in the **same folder as t
 | `t_14_01_01_02` | `Table 14.1.1.2 Subject Disposition - Part 1 (Drug Interaction)` |
 | `t_14_1_2_2` | `Table 14.1.2.2 Baseline Characteristics` |
 
-> Note: `Bookmark.xls` uses the legacy `.xls` format (read via `xlrd`).
+> **Tip:** The TFL bookmark list is normally provided by the statistician before TFL production begins. If it has not been provided, use `BookmarkGen.py` (see below) to generate it automatically from the RTF output files.
 
 If `Bookmark.xls` is not found, files are sorted automatically: Tables first, then Figures, then Listings, each group sorted by embedded numbers.
+
+---
+
+## Generating Bookmark.xls with BookmarkGen.py
+
+`BookmarkGen.py` scans a folder of RTF files, extracts the Table / Figure / Listing title from each file, and writes a `Bookmark.xls` ready for use with Word2PDF.
+
+```bash
+python BookmarkGen.py <folder>   # scan folder, write Bookmark.xls
+python BookmarkGen.py            # defaults to current directory
+```
+
+**Title extraction** is attempted via four strategies in order, stopping at the first hit:
+
+| Strategy | Mechanism | Typical source |
+|---|---|---|
+| 1 | Outermost `\bkmkstart` bookmark name | SAS GBK RTF (GBK `\'XX` encoding) |
+| 2 | Inline text scan on fully-decoded RTF | SAS Unicode RTF (`\uN;` encoding) |
+| 3 | Brace-block scan on raw RTF | Plain English RTF |
+| 4 | Deepest `\outlinelevelN` heading | Section-numbered listings (e.g. `16.2.10. Description`) |
+
+**Encoding support:**
+
+| Encoding | Example | Decoded |
+|---|---|---|
+| Unicode `\uN;` | `\u34920;\u26684;14.1.2.2` | `表格14.1.2.2` |
+| GBK `\'XX` | `\'B1\'ED1` | `表1` |
+| Plain ASCII | `Table 1.1.1` | `Table 1.1.1` |
+
+The output `Bookmark.xls` has two columns (**File Stem** and **Bookmark Label**), sorted in clinical order (Tables → Figures → Listings), with column filters and a frozen header row.
+
+**Requirements:** `pip install openpyxl`
 
 ---
 
@@ -147,6 +180,7 @@ The compiled `.exe` will be in the `dist/` folder and requires no Python install
 Word2PDF/
 ├── testcases/         # Test input files
 ├── Word2PDF.py        # Main application (GUI)
+├── BookmarkGen.py     # RTF title extractor — generates Bookmark.xls
 ├── Word2PDF.ico       # Application icon
 ├── requirements.txt
 ├── README.md
