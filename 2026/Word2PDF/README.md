@@ -1,23 +1,23 @@
 # Word2PDF
 
-A Windows desktop GUI tool to **convert** Word/RTF documents to PDF, **combine** multiple files into a single bookmarked PDF/DOCX/RTF with Table of Contents, and **check RTF pagination** — built with Python and the Word COM interface.
+A Windows desktop GUI tool to convert Word/RTF documents to PDF, combine multiple files into a single bookmarked PDF/DOCX/RTF with Table of Contents, and check RTF pagination — built with Python and the Word COM interface.
 
 ---
 
 ## Features
 
-- Convert `.doc`, `.docx`, `.rtf` files to PDF via Microsoft Word
-- Combine multiple RTF files into a single output with an auto-generated **Table of Contents** — export as DOCX, RTF, and/or PDF simultaneously
-- Combine PDFs or RTFs into a single bookmarked PDF **without** a TOC
-- Optional **Cover Page** support (`CoverPage.rtf` or `CoverPage.pdf`)
-- **Keep Original Page Numbers** option — each section retains its own page numbering in the combined output
-- **Automatic pagination check** before conversion — scans RTF files for mismatches between logical page count (`Sections.Count`) and physical page count (actual rendered pages) and writes a `Pagination.xlsx` report
-- Navigation heading injection (`add_nav_to_rtf`) — inserts a hidden Word Nav Pane heading for files that lack one, so all entries appear consistently in the navigation panel
-- Chinese content auto-detection (`_is_chinese_rtf`) — switches TOC heading and cover bookmark label to Chinese automatically
-- Bookmark ordering via `Bookmark.xls` or automatic natural sort (Table → Figure → Listing)
-- **Bookmark list auto-generation** via `BookmarkGen.py` — scans a folder of RTF files, extracts TFL titles (supports English, Chinese Unicode `\uN;`, and Chinese GBK `\'XX` encodings), and writes a ready-to-use `Bookmark.xls`
-- PDF/A (ISO 19005-1) output support
-- Preserves original file modification timestamps after conversion
+- **Convert** `.doc`, `.docx`, `.rtf` files to PDF via Microsoft Word
+- **Combine with TOC** — merge multiple RTF files into a single output with an auto-generated Table of Contents; export as DOCX, RTF, and/or PDF simultaneously
+- **Combine without TOC** — merge PDFs or RTFs into a single bookmarked PDF
+- **Cover Page** — optional support via `CoverPage.rtf` or `CoverPage.pdf`
+- **Keep Original Page Numbers** — each section retains its own page numbering in the combined output
+- **Pagination check** — automatically scans RTF files before conversion for mismatches between logical page count (`Sections.Count`) and physical page count, and writes a `Pagination.xlsx` report
+- **Navigation heading injection** (`add_nav_to_rtf`) — inserts a hidden Word Nav Pane heading for files that lack one, so all entries appear consistently in the navigation panel
+- **Chinese content auto-detection** (`_is_chinese_rtf`) — switches TOC heading and cover bookmark label to Chinese automatically
+- **Bookmark ordering** — via `Bookmark.xls` or automatic natural sort (Table → Figure → Listing)
+- **Bookmark list auto-generation** (`BookmarkGen.py`) — scans a folder of RTF files, extracts TFL titles (supports English, Chinese Unicode `\uN;`, and Chinese GBK `\'XX` encodings), and writes a ready-to-use `Bookmark.xls`
+- **PDF/A output** — ISO 19005-1 support
+- **Timestamp preservation** — keeps original file modification times after conversion
 
 ---
 
@@ -157,7 +157,7 @@ python BookmarkGen.py            # defaults to current directory
 | GBK `\'XX` | `\'B1\'ED1` | `表1` |
 | Plain ASCII | `Table 1.1.1` | `Table 1.1.1` |
 
-The output `Bookmark.xls` has two columns (**File Stem** and **Bookmark Label**), sorted in clinical order (Tables → Figures → Listings), with column filters and a frozen header row.
+The output `Bookmark.xls` has two columns (**Output Identifier** and **Title**), sorted in clinical order (Tables → Figures → Listings), with column filters and a frozen header row.
 
 **Requirements:** `pip install openpyxl`
 

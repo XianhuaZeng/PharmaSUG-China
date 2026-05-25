@@ -1,19 +1,19 @@
 # DupChecker
 
-A Windows desktop GUI tool to **detect duplicate code blocks** between Main and QC SAS programs — built with Python and tkinter.
+A Windows desktop GUI tool to detect duplicate code blocks between Main and QC SAS programs — built with Python and tkinter.
 
 ---
 
 ## Features
 
-- Scan two directories of `.sas` files and find duplicate code blocks that appear in both
-- Configurable **threshold** — minimum number of consecutive matching lines to flag as a duplicate
-- Optional **header skip** — ignore the first N lines of each file (e.g. standard program headers)
-- Smart line normalisation before comparison: strips comments, collapses whitespace, ignores curly brackets, and normalises operator spacing
-- Case-insensitive comparison
-- Automatic encoding detection (UTF-8 BOM / UTF-8 / GBK) for files with Chinese content
-- Results saved to **`Duplication.xlsx`** with clickable hyperlinks to each affected file and inline code snippets as cell comments
-- Clickable report link in the status area — opens `Duplication.xlsx` directly after the check completes
+- **Duplicate detection** — scans two directories of `.sas` files and finds duplicate code blocks that appear in both
+- **Threshold** — configurable minimum number of consecutive matching lines to flag as a duplicate
+- **Header skip** — optionally ignore the first N lines of each file (e.g. standard program headers)
+- **Line normalisation** — strips comments, collapses whitespace, ignores curly brackets, and normalises operator spacing before comparison
+- **Case-insensitive comparison**
+- **Encoding auto-detection** — handles UTF-8 BOM / UTF-8 / GBK for files with Chinese content
+- **`Duplication.xlsx` report** — results saved with clickable hyperlinks to each affected file and inline code snippets as cell comments
+- **Clickable report link** — opens `Duplication.xlsx` directly from the status area after the check completes
 
 ---
 
